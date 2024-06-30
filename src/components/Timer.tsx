@@ -22,20 +22,20 @@ function Timer({minutes, seconds, decMinutes, decSeconds, incMinutes, incSeconds
     return (
         <table className="mx-auto mt-10 text-9xl">
             <tbody>
-                <tr>
-                    <td><Button func={incMinutes} content={<FaAngleUp/>}/></td>
+                <tr className="text-7xl">
+                    <td className="text-center"><Button func={incMinutes} content={<FaAngleUp/>}/></td>
                     <td></td>
-                    <td><Button func={incSeconds} content={<FaAngleUp/>}/></td>
+                    <td className="text-center"><Button func={incSeconds} content={<FaAngleUp/>}/></td>
                 </tr>
                 <tr className="font-bold">
                     <td className="text-center py-5">{minutes}</td>
                     <td className="text-center px-2">:</td>
                     <td className="text-center">{seconds.toString().length == 1 ? `0${seconds}` : seconds}</td>
                 </tr>
-                <tr>
-                    <td><Button func={decMinutes} content={<FaAngleDown/>}/></td>
+                <tr className="text-7xl">
+                    <td className="text-center"><Button func={decMinutes} content={<FaAngleDown/>}/></td>
                     <td></td>
-                    <td><Button func={decSeconds} content={<FaAngleDown/>}/></td>
+                    <td className="text-center"><Button func={decSeconds} content={<FaAngleDown/>}/></td>
                 </tr>
             </tbody>
         </table>

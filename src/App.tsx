@@ -4,6 +4,15 @@ import {useState} from "react";
 function App() {
   const [minutes, setMinutes] = useState(3),
         [seconds, setSeconds] = useState(0)
+
+  const start = () => {}
+
+  const reset = () => {}
+
+  const pause = () => {}
+
+  const stop = () => {}
+
   return (
     <>
       <Timer minutes={minutes}
@@ -13,7 +22,7 @@ function App() {
              decMinutes={() => setMinutes(Math.max(minutes - 1, 0))}
              decSeconds={() => setSeconds(Math.max(seconds - 1, 0))}
       />
-      <Buttons/>
+      <Buttons start={start} reset={reset} pause={pause} stop={stop}/>
     </>
   )
 }
