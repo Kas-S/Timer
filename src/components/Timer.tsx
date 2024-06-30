@@ -1,11 +1,11 @@
 import {useState} from 'react'
-import { FaArrowCircleDown, FaArrowCircleUp } from "react-icons/fa"
+import { FaAngleDown, FaAngleUp } from "react-icons/fa"
 
 
 const Button = ({func, content}: {func: () => void, content: JSX.Element}) => {
     return (
         <button type="button" onClick={func}
-                className="p-4 rounded-xl bg-slate-500 text-white">
+                className="p-4 rounded-3xl bg-slate-500 text-white">
             {content}
         </button>
     )
@@ -18,9 +18,9 @@ function Timer() {
         <table className="mx-auto mt-10 text-9xl">
             <tbody>
                 <tr>
-                    <td><Button func={() => setMinutes(minutes + 1)} content={<FaArrowCircleUp/>}/></td>
+                    <td><Button func={() => setMinutes(minutes + 1)} content={<FaAngleUp/>}/></td>
                     <td></td>
-                    <td><Button func={() => setSeconds(Math.min(seconds + 1, 59))} content={<FaArrowCircleUp/>}/></td>
+                    <td><Button func={() => setSeconds(Math.min(seconds + 1, 59))} content={<FaAngleUp/>}/></td>
                 </tr>
                 <tr className="font-bold">
                     <td className="text-center py-5">{minutes}</td>
@@ -28,9 +28,9 @@ function Timer() {
                     <td className="text-center">{seconds.toString().length == 1 ? `0${seconds}` : seconds}</td>
                 </tr>
                 <tr>
-                    <td><Button func={() => setMinutes(Math.max(minutes - 1, 0))} content={<FaArrowCircleDown/>}/></td>
+                    <td><Button func={() => setMinutes(Math.max(minutes - 1, 0))} content={<FaAngleDown/>}/></td>
                     <td></td>
-                    <td><Button func={() => setSeconds(Math.max(seconds - 1, 0))} content={<FaArrowCircleDown/>}/></td>
+                    <td><Button func={() => setSeconds(Math.max(seconds - 1, 0))} content={<FaAngleDown/>}/></td>
                 </tr>
             </tbody>
         </table>
