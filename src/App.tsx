@@ -1,17 +1,17 @@
 import {Timer, Buttons} from "./components"
-import {useState} from "react";
+import {useState, useCallback} from "react"
 
 function App() {
   const [minutes, setMinutes] = useState(3),
         [seconds, setSeconds] = useState(0)
 
-  const start = () => {}
+  const start = useCallback(() => {}, [])
 
-  const reset = () => {}
+  const reset = useCallback(() => {}, [])
 
-  const pause = () => {}
+  const pause = useCallback(() => {}, [])
 
-  const stop = () => {}
+  const stop = useCallback(() => {}, [])
 
   return (
     <>

@@ -1,3 +1,5 @@
+import {memo} from "react"
+
 interface ButtonsProps {
     start: () => void,
     stop: () => void,
@@ -10,6 +12,7 @@ const Button = ({content, func}: {content: string, func: () => void}) => (
 )
 
 function Buttons ({start, stop, reset, pause}: ButtonsProps) {
+    console.log("Buttons rendered")
     return (
         <div className="flex items-center justify-center w-full mt-10 gap-3">
             <Button func={start} content="Start"/>
@@ -20,4 +23,4 @@ function Buttons ({start, stop, reset, pause}: ButtonsProps) {
     )
 }
 
-export default Buttons
+export default memo(Buttons)
