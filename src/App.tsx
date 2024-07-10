@@ -1,9 +1,21 @@
 import {Timer, Buttons} from "./components"
-import {useState, useCallback} from "react"
+import {useState, useCallback, useRef} from "react"
 
 function App() {
   const [minutes, setMinutes] = useState(3),
         [seconds, setSeconds] = useState(0)
+  const initialMinutes = useRef(3),
+        initialSeconds = useRef(0)
+
+  const updateMinutes = (v: number) => {
+      setMinutes(v)
+      initialMinutes.current = v
+  }
+
+  const updateSeconds = (v: number) => {
+      setSeconds(v)
+      initialSeconds.current = v
+  }
 
   const start = useCallback(() => {}, [])
 
@@ -17,10 +29,8 @@ function App() {
     <>
       <Timer minutes={minutes}
              seconds={seconds}
-             incMinutes={() => setMinutes(minutes + 1)}
-             incSeconds={() => setSeconds(Math.min(seconds + 1, 59))}
-             decMinutes={() => setMinutes(Math.max(minutes - 1, 0))}
-             decSeconds={() => setSeconds(Math.max(seconds - 1, 0))}
+             solidMinutesUpdate={updateMinutes}
+             solidSecondsUpdate={updateSeconds}
       />
       <Buttons start={start} reset={reset} pause={pause} stop={stop}/>
     </>

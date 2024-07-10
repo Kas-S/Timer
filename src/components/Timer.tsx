@@ -3,10 +3,8 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa"
 interface TimerProps {
     minutes: number,
     seconds: number,
-    incMinutes: () => void,
-    incSeconds: () => void,
-    decMinutes: () => void,
-    decSeconds: () => void
+    solidMinutesUpdate: (v: number) => void,
+    solidSecondsUpdate: (v: number) => void
 }
 
 const Button = ({func, content}: {func: () => void, content: JSX.Element}) => {
@@ -18,14 +16,14 @@ const Button = ({func, content}: {func: () => void, content: JSX.Element}) => {
     )
 }
 
-function Timer({minutes, seconds, decMinutes, decSeconds, incMinutes, incSeconds}: TimerProps) {
+function Timer({minutes, seconds, solidMinutesUpdate, solidSecondsUpdate}: TimerProps) {
     return (
         <table className="mx-auto mt-10 text-9xl">
             <tbody>
                 <tr className="text-7xl">
-                    <td className="text-center"><Button func={incMinutes} content={<FaAngleUp/>}/></td>
+                    <td className="text-center"><Button func={() => solidMinutesUpdate(minutes + 1)} content={<FaAngleUp/>}/></td>
                     <td></td>
-                    <td className="text-center"><Button func={incSeconds} content={<FaAngleUp/>}/></td>
+                    <td className="text-center"><Button func={() => solidSecondsUpdate(Math.min(seconds + 1, 59))} content={<FaAngleUp/>}/></td>
                 </tr>
                 <tr className="font-bold">
                     <td className="text-center py-5">{minutes}</td>
@@ -33,9 +31,9 @@ function Timer({minutes, seconds, decMinutes, decSeconds, incMinutes, incSeconds
                     <td className="text-center">{seconds.toString().length == 1 ? `0${seconds}` : seconds}</td>
                 </tr>
                 <tr className="text-7xl">
-                    <td className="text-center"><Button func={decMinutes} content={<FaAngleDown/>}/></td>
+                    <td className="text-center"><Button func={() => solidMinutesUpdate(Math.max(minutes - 1, 0))} content={<FaAngleDown/>}/></td>
                     <td></td>
-                    <td className="text-center"><Button func={decSeconds} content={<FaAngleDown/>}/></td>
+                    <td className="text-center"><Button func={() => solidSecondsUpdate(Math.max(seconds - 1, 0))} content={<FaAngleDown/>}/></td>
                 </tr>
             </tbody>
         </table>
