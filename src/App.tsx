@@ -12,7 +12,7 @@ function App() {
         if (started) {
             let m = minutes,
                 s = seconds
-            setInterval(() => {
+            const t = setInterval(() => {
                 if (s - 1 === -1 && m > 0) {
                     s = 59
                     m--
@@ -23,6 +23,7 @@ function App() {
                 setSeconds(s)
                 if (s === 0 && m === 0) {
                     stop()
+                    clearInterval(t)
                 }
             }, 1000)
         }
