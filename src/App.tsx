@@ -41,12 +41,14 @@ function App() {
 
   const start = useCallback(() => {
       setStarted(true)
-
   }, [])
 
-  const reset = useCallback(() => {}, [])
+  const reset = useCallback(() => {
+      stop()
+      setMinutes(initialMinutes.current)
+      setSeconds(initialSeconds.current)
+  }, [])
 
-  const pause = useCallback(() => {}, [])
 
   const stop = useCallback(() => {
         setStarted(false)
@@ -59,7 +61,7 @@ function App() {
              solidMinutesUpdate={updateMinutes}
              solidSecondsUpdate={updateSeconds}
       />
-      <Buttons start={start} reset={reset} pause={pause} stop={stop}/>
+      <Buttons start={start} reset={reset} stop={stop}/>
     </>
   )
 }
