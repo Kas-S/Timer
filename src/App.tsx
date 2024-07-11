@@ -9,24 +9,24 @@ function App() {
         initialSeconds = useRef(0)
 
     useEffect(() => {
-        if (started) {
-            let m = minutes,
-                s = seconds
-            const t = setInterval(() => {
-                if (s - 1 === -1 && m > 0) {
-                    s = 59
-                    m--
-                } else {
-                    s--
-                }
-                setMinutes(m)
-                setSeconds(s)
-                if (s === 0 && m === 0) {
-                    stop()
-                    clearInterval(t)
-                }
-            }, 1000)
-        }
+        let m = minutes,
+            s = seconds
+        const t = setInterval(() => {
+            if (s - 1 === -1 && m > 0) {
+                s = 59
+                m--
+            } else {
+                s--
+            }
+            setMinutes(m)
+            setSeconds(s)
+            if (s === 0 && m === 0) {
+                stop()
+                clearInterval(t)
+            }
+        }, 1000)
+        if (!started) clearInterval(t)
+        return () => clearInterval(t)
     }, [started]);
 
   const updateMinutes = (v: number) => {
